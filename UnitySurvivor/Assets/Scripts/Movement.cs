@@ -80,22 +80,22 @@ public class Movement : MonoBehaviour
         if (other.gameObject.CompareTag("Wall"))
         {
             Debug.Log("Wall detected");
-            if (other.gameObject.transform.position.y > transform.position.y)
+            if (other.gameObject.name == "NORTH")
             {
                 Debug.Log("Wall above");
                 unMove(0);
             }
-            if (other.gameObject.transform.position.y < transform.position.y)
+            if (other.gameObject.name == "SOUTH")
             {
                 Debug.Log("Wall below");
                 unMove(1);
             }
-            if (other.gameObject.transform.position.x < transform.position.x)
+            if (other.gameObject.name == "WEST")
             {
                 Debug.Log("Wall left");
                 unMove(2);
             }
-            if (other.gameObject.transform.position.x > transform.position.x)
+            if (other.gameObject.name == "EAST")
             {
                 Debug.Log("Wall right");
                 unMove(3);
@@ -109,22 +109,22 @@ public class Movement : MonoBehaviour
         if (other.gameObject.CompareTag("Wall"))
         {
             Debug.Log("Wall detected");
-            if (other.gameObject.transform.position.y > transform.position.y)
+            if (other.gameObject.name == "NORTH")
             {
                 Debug.Log("Wall above");
                 Move(0);
             }
-            if (other.gameObject.transform.position.y < transform.position.y)
+            if (other.gameObject.name == "SOUTH")
             {
                 Debug.Log("Wall below");
                 Move(1);
             }
-            if (other.gameObject.transform.position.x < transform.position.x)
+            if (other.gameObject.name == "WEST")
             {
                 Debug.Log("Wall left");
                 Move(2);
             }
-            if (other.gameObject.transform.position.x > transform.position.x)
+            if (other.gameObject.name == "EAST")
             {
                 Debug.Log("Wall right");
                 Move(3);
@@ -140,6 +140,7 @@ public class Movement : MonoBehaviour
         if (health <= 0)
         {
             Destroy(this.gameObject);
+            Application.Quit();
         }
     }
 }

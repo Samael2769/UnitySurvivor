@@ -6,6 +6,9 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private List<GameObject> bulletInfos = new List<GameObject>();
+    public float shootDelay = 0.7f;
+    public float delta = 0.0f;
+    int bulletIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +18,15 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && delta >= shootDelay)
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            bullet.GetComponent<Shoot>().bulletPrefab = bulletInfos[0];
+            bullet.GetComponent<Shoot>().bulletPrefab = bulletInfos[bulletIndex];
             bullet.transform.rotation = Quaternion.LookRotation(getMousePosition());
             bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.forward * bullet.GetComponent<Shoot>().bulletSpeed;
+            delta = 0.0f;
         }
+        delta += Time.deltaTime;
     }
 
     Vector3 getMousePosition()
@@ -31,5 +36,11 @@ public class PlayerShoot : MonoBehaviour
         Vector3 lookPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector3 direction = lookPosition - transform.position;
         return direction.normalized;
+    }
+
+    public void upgradeWeapon()
+    {
+        if (bulletIndex < bulletInfos.Count - 1)
+            bulletIndex++;
     }
 }

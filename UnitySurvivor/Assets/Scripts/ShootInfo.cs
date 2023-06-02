@@ -11,7 +11,7 @@ public class ShootInfo : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Collision" + other.gameObject.tag);
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
         }

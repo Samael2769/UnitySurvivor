@@ -19,6 +19,7 @@ public class EnemyHandler : MonoBehaviour
         if (stats.health <= 0)
         {
             Destroy(this.gameObject);
+            transform.parent.GetComponent<EnemySpawn>().addScore(1);
         }
     }
 
@@ -41,7 +42,7 @@ public class EnemyHandler : MonoBehaviour
             Attack(other.gameObject);
         } else if (other.gameObject.tag == "Shoot")
         {
-            TakeDamage(10);
+            TakeDamage((int)other.gameObject.GetComponent<ShootInfo>().damage);
         }
     }
 }

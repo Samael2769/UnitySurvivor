@@ -16,6 +16,7 @@ public class Shoot : MonoBehaviour
         bullet.transform.rotation = transform.rotation;
         bullet.transform.rotation = Quaternion.Euler(0, 0, getZRotationWithMousePosition());
         bullet.transform.parent = this.transform;
+        
     }
 
     // Update is called once per frame
